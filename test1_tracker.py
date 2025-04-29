@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 # === Configuration ===
-tickers = ["A", "MSCI", "JPM", "KDP", "OTIS", "PANW", "CTAS", "NTAP", "RMD"]
+# tickers = ["NVDA", "MSCI", "JPM", "KDP", "OTIS", "PANW", "CTAS", "NTAP", "RMD"]
+tickers = ["NVDA", "MSCI", "JPM"]
 benchmark = "SPY"
 investment = 100
 #purchase_date = "2025-04-29"
@@ -13,20 +14,26 @@ purchase_date = "2023-05-01"
 today = datetime.today().strftime("%Y-%m-%d")
 
 # === Fetch price data ===
-all_tickers = tickers + [benchmark]
 df_all = pd.DataFrame()
+available_tickers = []
 
 st.subheader("📡 Fetching price data individually:")
-for t in all_tickers:
+for t in tickers + [benchmark]:
     try:
-        data = yf.Ticker(t).history(start=purchase_date)["Close"].rename(t)
-        if not data.empty:
-            df_all[t] = data
-            st.write(f"✅ {t} loaded ({len(data)} rows)")
-        else:
+        data = yf.Ticker(t).history(start=purchase_date)["Close"]
+        if data.empty:
             st.write(f"❌ {t} returned no data")
+            continue
+        df_all[t] = data.rename(t)
+        available_tickers.append(t)
+        st.write(f"✅ {t} loaded ({len(data)} rows)")
     except Exception as e:
         st.write(f"❌ {t} failed → {e}")
+
+# Fallback if everything fails
+if df_all.empty:
+    st.error("🚨 No valid price data available. Please wait a few minutes and reload (Yahoo Finance rate-limited this app).")
+    st.stop()
 
 # === Calculate returns ===
 returns = {}
@@ -46,7 +53,7 @@ valid_returns = [returns[t] for t in tickers if returns[t] is not None]
 portfolio_return = sum(valid_returns) / len(valid_returns) if valid_returns else None
 
 # SPY
-spy = df_all[benchmark].dropna()
+spy = df_all[benchmark].dropna() if benchmark in df_all.columns else pd.Series()
 spy_return = ((spy.iloc[-1] - spy.iloc[0]) / spy.iloc[0]) * 100 if not spy.empty else None
 
 # === Streamlit UI ===
