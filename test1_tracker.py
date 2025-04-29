@@ -13,15 +13,20 @@ purchase_date = "2023-05-01"
 today = datetime.today().strftime("%Y-%m-%d")
 
 # === Fetch price data ===
-df_all = yf.download(tickers + [benchmark], start=purchase_date)["Close"]
-# Check which tickers returned actual data
-st.subheader("🔍 Ticker Coverage")
-available_tickers = [ticker for ticker in df_all.columns if df_all[ticker].dropna().any()]
-missing_tickers = [ticker for ticker in tickers + [benchmark] if ticker not in available_tickers]
-st.write("✅ Available:", available_tickers)
-st.write("❌ Missing or empty:", missing_tickers)
+all_tickers = tickers + [benchmark]
+df_all = pd.DataFrame()
 
-
+st.subheader("📡 Fetching price data individually:")
+for t in all_tickers:
+    try:
+        data = yf.Ticker(t).history(start=purchase_date)["Close"].rename(t)
+        if not data.empty:
+            df_all[t] = data
+            st.write(f"✅ {t} loaded ({len(data)} rows)")
+        else:
+            st.write(f"❌ {t} returned no data")
+    except Exception as e:
+        st.write(f"❌ {t} failed → {e}")
 
 # === Calculate returns ===
 returns = {}
