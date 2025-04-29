@@ -14,6 +14,10 @@ today = datetime.today().strftime("%Y-%m-%d")
 
 # === Fetch price data ===
 df_all = yf.download(tickers + [benchmark], start=purchase_date)["Close"]
+st.subheader("🛠 Debug Info")
+st.text(f"Data shape: {df_all.shape}")
+st.dataframe(df_all.tail())
+
 
 # === Calculate returns ===
 returns = {}
