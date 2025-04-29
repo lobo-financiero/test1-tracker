@@ -9,7 +9,7 @@ tickers = ["A", "MSCI", "JPM", "KDP", "OTIS", "PANW", "CTAS", "NTAP", "RMD"]
 benchmark = "SPY"
 investment = 100
 #purchase_date = "2025-04-29"
-purchase_date = "2023-04-29"
+purchase_date = "2023-05-01"
 today = datetime.today().strftime("%Y-%m-%d")
 
 # === Fetch price data ===
