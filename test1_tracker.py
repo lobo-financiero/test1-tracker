@@ -14,9 +14,13 @@ today = datetime.today().strftime("%Y-%m-%d")
 
 # === Fetch price data ===
 df_all = yf.download(tickers + [benchmark], start=purchase_date)["Close"]
-st.subheader("🛠 Debug Info")
-st.text(f"Data shape: {df_all.shape}")
-st.dataframe(df_all.tail())
+# Check which tickers returned actual data
+st.subheader("🔍 Ticker Coverage")
+available_tickers = [ticker for ticker in df_all.columns if df_all[ticker].dropna().any()]
+missing_tickers = [ticker for ticker in tickers + [benchmark] if ticker not in available_tickers]
+st.write("✅ Available:", available_tickers)
+st.write("❌ Missing or empty:", missing_tickers)
+
 
 
 # === Calculate returns ===
