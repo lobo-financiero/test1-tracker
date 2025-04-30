@@ -36,18 +36,22 @@ def fetch_fmp_price_history(symbol, from_date, to_date):
         return pd.Series(dtype=float)
 
 # === Fetch all data ===
+st.write("📡 Fetching price data...")
 price_data = {}
+errors = []
+
 for symbol in tickers + [benchmark]:
-    st.write(f"🔄 Fetching {symbol}...")
     s = fetch_fmp_price_history(symbol, purchase_date, today)
     if not s.empty:
         price_data[symbol] = s
-        st.success(f"✅ {symbol} loaded ({len(s)} rows)")
     else:
-        st.error(f"❌ {symbol} returned no data.")
+        errors.append(symbol)
 
-    if not s.empty:
-        price_data[symbol] = s
+if errors:
+    st.error(f"❌ Some tickers failed to load: {', '.join(errors)}")
+else:
+    st.success("✅ All data loaded successfully.")
+
 
 # === Calculate returns ===
 returns = {}
