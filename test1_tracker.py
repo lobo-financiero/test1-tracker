@@ -62,28 +62,57 @@ portfolio_return = sum(valid_returns) / len(valid_returns) if valid_returns else
 spy = price_data.get(benchmark, pd.Series())
 spy_return = ((spy.iloc[-1] - spy.iloc[0]) / spy.iloc[0]) * 100 if not spy.empty else None
 
-# === Display results ===
-data = {**returns, "Portfolio": portfolio_return, "SPY": spy_return}
-df = pd.DataFrame.from_dict(data, orient="index", columns=["Return (%)"]).dropna()
-df = df.loc[[t for t in tickers if t in df.index] + ["Portfolio", "SPY"]]
+import plotly.graph_objects as go
 
-# === Chart ===
-colors = ["#057DC9" if idx == "Portfolio" else
-          "#F4A300" if idx == "SPY" else
-          "#97E956" if val > 0 else "#F44A46"
-          for idx, val in df["Return (%)"].items()]
+# === Prepare chart inputs ===
+bar_labels = [i for i in df.index]
+bar_returns = df["Return (%)"].tolist()
+bar_colors = ["#97E956" if val > 0 else "#F44A46" for val in bar_returns]
 
-fig, ax = plt.subplots(figsize=(10, 5))
-bars = ax.bar(df.index, df["Return (%)"], color=colors)
+# Portfolio and SPY coloring
+if "Portfolio" in bar_labels:
+    idx = bar_labels.index("Portfolio")
+    bar_colors[idx] = "#057DC9"
+if "SPY" in bar_labels:
+    idx = bar_labels.index("SPY")
+    bar_colors[idx] = "orange"
 
-for bar, val in zip(bars, df["Return (%)"]):
-    ax.text(bar.get_x() + bar.get_width()/2, val, f"{val:.1f}%",
-            ha='center', va='bottom' if val >= 0 else 'top', fontsize=10)
+# === Build Plotly chart ===
+fig = go.Figure(
+    data=[go.Bar(
+        x=bar_labels,
+        y=bar_returns,
+        marker_color=bar_colors,
+        text=[f"{r:.1f}%" for r in bar_returns],
+        textposition="outside"
+    )]
+)
 
-ax.axhline(0, color='gray', linestyle='--', linewidth=1)
-ax.set_ylabel("Return (%)")
-ax.set_title("Returns Since Purchase Date")
-plt.xticks(rotation=45)
-st.pyplot(fig)
+fig.update_layout(
+    template="plotly_dark",
+    title=f"Test 1 Returns Since {purchase_date}",
+    yaxis_title="Return (%)",
+    xaxis_title="",
+    showlegend=False,
+    height=500,
+    width=700
+)
 
-st.dataframe(df.style.format({"Return (%)": "{:.2f}"}))
+# Optional separator line
+sep_index = len(tickers) - 0.5
+fig.add_shape(
+    type="line",
+    x0=sep_index, x1=sep_index,
+    y0=min(bar_returns) * 1.1,
+    y1=max(bar_returns) * 1.1,
+    line=dict(color="white", width=1, dash="dot")
+)
+
+fig.update_yaxes(showgrid=True, zeroline=True, zerolinewidth=1, zerolinecolor='gray')
+
+# === Layout side-by-side ===
+col1, col2 = st.columns([2, 1])
+with col1:
+    st.plotly_chart(fig, use_container_width=True)
+with col2:
+    st.dataframe(df.style.format({"Return (%)": "{:.2f}"}))
