@@ -8,7 +8,8 @@ from datetime import datetime
 tickers = ["NVDA", "MSCI", "JPM", "KDP", "OTIS", "PANW", "CTAS", "NTAP", "RMD"]
 benchmark = "SPY"
 investment = 100
-purchase_date = "2025-04-29"
+#purchase_date = "2025-04-29"
+purchase_date = "2024-04-29"
 today = datetime.today().strftime("%Y-%m-%d")
 
 # === Fetch price data ===
