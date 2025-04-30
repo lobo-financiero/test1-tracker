@@ -111,5 +111,5 @@ if st.button("Fetch Price Data"):
     except Exception as e:
         st.error(f"🚨 Failed to fetch data: {e}")
 
-# # Optional: show table
-st.dataframe(df.style.format({"Return (%)": "{:.2f}"}))
+# Optional: show table
+#st.dataframe(df.style.format({"Return (%)": "{:.2f}"}))
