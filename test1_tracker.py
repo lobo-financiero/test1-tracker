@@ -70,6 +70,11 @@ spy_return = ((spy.iloc[-1] - spy.iloc[0]) / spy.iloc[0]) * 100 if not spy.empty
 
 import plotly.graph_objects as go
 
+# === Build DataFrame for display/charting ===
+data = {**returns, "Portfolio": portfolio_return, "SPY": spy_return}
+df = pd.DataFrame.from_dict(data, orient="index", columns=["Return (%)"]).dropna()
+df = df.loc[[t for t in tickers if t in df.index] + ["Portfolio", "SPY"]]
+
 # === Prepare chart inputs ===
 bar_labels = [i for i in df.index]
 bar_returns = df["Return (%)"].tolist()
