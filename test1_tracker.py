@@ -82,34 +82,26 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-st.set_page_config(page_title="yfinance Debug", layout="centered")
+st.set_page_config(page_title="yfinance Batch Debug", layout="centered")
 
-# === Config ===
 ticker = st.text_input("Ticker Symbol", value="NVDA")
 start_date = st.date_input("Start Date", value=datetime(2025, 4, 29))
 end_date = datetime.today().strftime("%Y-%m-%d")
 
-# === Try fetching ===
-if st.button("Fetch Price Data"):
-    st.write(f"📡 Fetching `{ticker}` from {start_date} to {end_date}...")
-
+if st.button("Try Batch Download"):
+    st.write(f"📡 Downloading `{ticker}` using `yf.download()`...")
     try:
-        data = yf.Ticker(ticker).history(start=start_date, end=end_date)
+        data = yf.download(ticker, start=start_date, end=end_date)
         if data.empty:
-            st.error("❌ No data returned. Either the ticker is wrong or rate-limited.")
+            st.error("❌ No data returned. Still rate-limited or invalid ticker.")
         else:
             st.success(f"✅ Data loaded ({len(data)} rows)")
             st.dataframe(data.tail())
 
-            # Plot it
             fig, ax = plt.subplots(figsize=(10, 4))
             data["Close"].plot(ax=ax)
             ax.set_title(f"{ticker} Close Price")
             ax.set_ylabel("Price ($)")
             st.pyplot(fig)
-
     except Exception as e:
-        st.error(f"🚨 Failed to fetch data: {e}")
-
-# Optional: show table
-#st.dataframe(df.style.format({"Return (%)": "{:.2f}"}))
+        st.error(f"🚨 Failed: {e}")
