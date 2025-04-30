@@ -128,9 +128,9 @@ fig.update_yaxes(showgrid=True, zeroline=True, zerolinewidth=1, zerolinecolor='g
 # === Layout side-by-side ===
 def highlight_special_rows(row):
     if row.name == "Portfolio":
-        return ["background-color: #057DC9; color: white"] * len(row)
+        return ["color: #057DC9; font-weight: bold"] * len(row)
     elif row.name == "SPY":
-        return ["background-color: orange; color: black"] * len(row)
+        return ["color: orange; font-weight: bold"] * len(row)
     else:
         return [""] * len(row)
 
@@ -142,6 +142,5 @@ with col2:
         df.style
         .format({"Return (%)": "{:.2f}%"})
         .apply(highlight_special_rows, axis=1)
-        .set_properties(**{"text-align": "left"})
     )
     st.dataframe(styled_df)
