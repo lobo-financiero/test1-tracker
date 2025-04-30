@@ -126,10 +126,11 @@ fig.add_shape(
 fig.update_yaxes(showgrid=True, zeroline=True, zerolinewidth=1, zerolinecolor='gray')
 
 # === Layout side-by-side ===
+df.rename(index={"Portfolio": "📦 Portfolio", "SPY": "📈 SPY"}, inplace=True)
 def highlight_special_rows(row):
-    if row.name == "Portfolio":
+    if row.name == "📦 Portfolio":
         return ["color: #057DC9; font-weight: bold"] * len(row)
-    elif row.name == "SPY":
+    elif row.name == "📈 SPY":
         return ["color: orange; font-weight: bold"] * len(row)
     else:
         return [""] * len(row)
@@ -143,5 +144,4 @@ with col2:
         .format({"Return (%)": "{:.2f}%"})
         .apply(highlight_special_rows, axis=1)
     )
-    df.rename(index={"Portfolio": "📦 Portfolio", "SPY": "📈 SPY"}, inplace=True)
     st.dataframe(styled_df)
