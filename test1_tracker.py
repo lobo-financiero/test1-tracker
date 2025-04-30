@@ -5,7 +5,6 @@ import requests
 from datetime import datetime
 
 # === CONFIGURATION ===
-FMP_API_KEY = "6AaHsONAcFBurQAd0z7IModbXC5bza2U"
 tickers = ["NVDA", "MSCI", "JPM", "KDP", "OTIS", "PANW", "CTAS", "NTAP", "RMD"]
 benchmark = "SPY"
 investment = 100
@@ -17,7 +16,9 @@ st.title("📊 Test 1 Portfolio Tracker (via FMP)")
 st.markdown(f"Tracking from **{purchase_date}** to **{today}**")
 
 # === FMP price fetcher ===
-def fetch_fmp_price_history(symbol, from_date, to_date, api_key):
+@st.cache_data(ttl=86400)  # Cache for 1 day
+def fetch_fmp_price_history(symbol, from_date, to_date):
+    api_key = st.secrets["FMP_API_KEY"]
     url = f"https://financialmodelingprep.com/api/v3/historical-price-full/{symbol}?from={from_date}&to={to_date}&apikey={api_key}"
     try:
         res = requests.get(url)
@@ -38,7 +39,7 @@ def fetch_fmp_price_history(symbol, from_date, to_date, api_key):
 price_data = {}
 for symbol in tickers + [benchmark]:
     st.write(f"🔄 Fetching {symbol}...")
-    s = fetch_fmp_price_history(symbol, purchase_date, today, FMP_API_KEY)
+    s = fetch_fmp_price_history(symbol, purchase_date, today)
     if not s.empty:
         price_data[symbol] = s
 
