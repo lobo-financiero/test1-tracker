@@ -126,8 +126,22 @@ fig.add_shape(
 fig.update_yaxes(showgrid=True, zeroline=True, zerolinewidth=1, zerolinecolor='gray')
 
 # === Layout side-by-side ===
+def highlight_special_rows(row):
+    if row.name == "Portfolio":
+        return ["background-color: #057DC9; color: white"] * len(row)
+    elif row.name == "SPY":
+        return ["background-color: orange; color: black"] * len(row)
+    else:
+        return [""] * len(row)
+
 col1, col2 = st.columns([2, 1])
 with col1:
     st.plotly_chart(fig, use_container_width=True)
 with col2:
-    st.dataframe(df.style.format({"Return (%)": "{:.2f}"}))
+    styled_df = (
+        df.style
+        .format({"Return (%)": "{:.2f}%"})
+        .apply(highlight_special_rows, axis=1)
+        .set_properties(**{"text-align": "left"})
+    )
+    st.dataframe(styled_df)
