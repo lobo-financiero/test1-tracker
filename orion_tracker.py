@@ -127,6 +127,27 @@ st.plotly_chart(fig, use_container_width=True)
 
 # === Table of All 99 ===
 df_99 = pd.DataFrame.from_dict(returns, orient="index", columns=["Return (%)"])
+df_99.index.name = "Symbol"
+df_99 = df_99.reset_index()
+
+# Add Portfolio Label
+def get_portfolio_label(ticker):
+    if ticker in tickers_10:
+        return "Top 10"
+    elif ticker in tickers_30:
+        return "Top 30"
+    else:
+        return "Top 99"
+
+df_99["Portfolio"] = df_99["Symbol"].apply(get_portfolio_label)
+
+# Add Predicted Rank
+df_99["Prediction Rank"] = df_99["Symbol"].apply(lambda s: tickers_99.index(s) + 1 if s in tickers_99 else None)
+
+# Sort by return (or keep original order)
+df_99 = df_99.sort_values("Return (%)", ascending=False)
+
+df_99 = pd.DataFrame.from_dict(returns, orient="index", columns=["Return (%)"])
 df_99 = df_99.sort_values("Return (%)", ascending=False)
 
 st.markdown("### 📋 All 99 Stocks with Return")
