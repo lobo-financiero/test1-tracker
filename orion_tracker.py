@@ -5,7 +5,7 @@ from datetime import datetime
 import plotly.graph_objects as go
 
 # === CONFIGURATION ===
-purchase_date = "2025-05-7"
+purchase_date = "2025-05-07"
 today = datetime.today().strftime("%Y-%m-%d")
 benchmark = "SPY"
 investment = 100
