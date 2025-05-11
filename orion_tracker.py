@@ -154,22 +154,13 @@ df_99 = df_99.sort_values("Return (%)", ascending=False)
 # Display styled table
 st.markdown("### 📋 All 99 Stocks with Return")
 
-def highlight_portfolio(row):
-    if row["Portfolio"] == "Top 10":
-        return ["background-color: #057DC9; color: white"] * len(row)
-    elif row["Portfolio"] == "Top 30":
-        return ["background-color: #288CFF; color: black"] * len(row)
-    elif row["Portfolio"] == "Top 99":
-        return ["background-color: #4FB7FF; color: black"] * len(row)
-    else:
-        return [""] * len(row)
-
 #st.dataframe(df_99.style.format({"Return (%)": "{:.2f}%"}), hide_index=True)
 
 st.dataframe(
     df_99.style
         .format({"Return (%)": "{:.2f}%"})
-        .apply(highlight_portfolio, axis=1),
+        .background_gradient(subset=["Return (%)"], cmap="Greens"),
     hide_index=True
 )
+
 
