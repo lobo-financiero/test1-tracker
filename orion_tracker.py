@@ -107,7 +107,7 @@ fig = go.Figure(
         x=bar_labels,
         y=bar_returns,
         marker_color=bar_colors,
-        text=[f"{r:.1f}%" for r in bar_returns],
+        text=[f"{r:.1f}%" if r is not None else "N/A" for r in bar_returns],
         textposition="outside"
     )]
 )
