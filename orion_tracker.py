@@ -147,10 +147,9 @@ df_99["Prediction Rank"] = df_99["Symbol"].apply(lambda s: tickers_99.index(s) +
 # Sort by return (or keep original order)
 df_99 = df_99.sort_values("Return (%)", ascending=False)
 
-df_99 = pd.DataFrame.from_dict(returns, orient="index", columns=["Return (%)"])
-df_99 = df_99.sort_values("Return (%)", ascending=False)
-
+# Display styled table
 st.markdown("### 📋 All 99 Stocks with Return")
 st.dataframe(df_99.style.format({"Return (%)": "{:.2f}%"}))
+
 
 #Add Orion dashboard with top 10/30/99 portfolios
