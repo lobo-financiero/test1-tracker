@@ -28,8 +28,8 @@ tickers_10 = tickers_99[:10]
 tickers_30 = tickers_99[:30]
 
 # === Streamlit Setup ===
-st.set_page_config(page_title="Orion Portfolio Tracker", layout="wide")
-st.title("📊 Orion Portfolio Tracker")
+st.set_page_config(page_title="Vega Portfolio Tracker", layout="wide")
+st.title("⭐ Vega Portfolio Tracker")
 st.markdown(f"Tracking real returns from **{purchase_date}** to **{today}**")
 
 # === FMP price fetcher ===
