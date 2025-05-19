@@ -1,4 +1,4 @@
-"""import streamlit as st
+import streamlit as st
 import pandas as pd
 import requests
 from datetime import datetime
@@ -161,7 +161,9 @@ st.dataframe(
         .format({"Return (%)": "{:.2f}%"})
         .background_gradient(subset=["Return (%)"], cmap="Greens"),
     hide_index=True
-)"""
+)
+
+"""
 
 import streamlit as st
 import pandas as pd
@@ -336,6 +338,6 @@ st.dataframe(
         .background_gradient(subset=["Return (%)"], cmap="Greens"),
     hide_index=True
 )
-
+"""
 
 
