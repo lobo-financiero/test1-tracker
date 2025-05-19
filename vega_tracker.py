@@ -13,6 +13,7 @@ investment = 100
 
 # === Ticker groups ===
 tickers_99 = [
+    #============= With info until may 6 - change purchase date to may 7
     "PLTR", "TKO", "ORCL", "RL", "UAL", "FTNT", "PODD", "TPR", "TSLA", "NRG",
     "BMY", "CEG", "DE", "IP", "HWM", "ABBV", "TRGP", "RTX", "MMM", "VRSK",
     "ADSK", "DAL", "BKR", "GL", "AXON", "CCL", "VST", "T", "CBRE", "SW",
@@ -23,6 +24,14 @@ tickers_99 = [
     "TTWO", "NSC", "ESS", "WSM", "FI", "GRMN", "BRO", "FFIV", "DVA", "SBUX",
     "TFC", "SBAC", "CHRW", "BAC", "RCL", "PLD", "NOC", "ZBRA", "LII", "LYV",
     "CRM", "NFLX", "NI", "ROL", "PNW", "AMT", "CPAY", "AEE", "EFX", "AZO"
+
+    #============= With info until may 15 - change purchase date to may 16
+    # "PLTR","HWM","TPR","FTNT","ABBV","BLK","CHTR","FOX","GILD","NVR","FOXA","EXPE","MMM","ADSK","WELL","PODD",
+    # "NOW","IP","FFIV","TRGP","LYV","CBRE","ETR","UAL","HD","MCO","ORCL","AVGO","AON","COF","SW","TPL","FICO",
+    # "KMI","PM","RCL","REGN","GL","AZO","TDY","TYL","BMY","EQT","EFX","WMB","DASH","TSLA","ISRG","MO","INCY",
+    # "TMO","INTU","RJF","FI","LII","TRV","MS","AXP","BX","ESS","GLW","VRSN","NDAQ","ZBRA","ICE","AMP","IRM",
+    # "APD","CMI","BRO","CINF","IBM","CCL","ADBE","GE","STT","GDDY","URI","T","PKG","LH","NI","MTD","NSC","WAB",
+    # "K","PNR","EQIX","GRMN","BSX","MAA","NTRS","RMD","AMGN","BKR","ADP","ACN","AIZ","DGX","AEE"
 ]
 tickers_10 = tickers_99[:10]
 tickers_30 = tickers_99[:30]
