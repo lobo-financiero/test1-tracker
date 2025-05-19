@@ -326,7 +326,7 @@ df_99 = df_99[cols]
 df_99 = df_99.sort_values("Return (%)", ascending=False)
 
 # Display styled table
-st.markdown("### 📋 All 99 Stocks with Return")
+st.markdown("### 📋 All 100 Stocks with Return")
 
 #st.dataframe(df_99.style.format({"Return (%)": "{:.2f}%"}), hide_index=True)
 
