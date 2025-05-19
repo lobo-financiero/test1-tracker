@@ -29,7 +29,7 @@ tickers_30 = tickers_99[:30]
 
 # === Streamlit Setup ===
 st.set_page_config(page_title="Orion Portfolio Tracker", layout="wide")
-st.title("📊 Orion Portfolio Tracker")
+st.title("✨ Orion Portfolio Tracker")
 st.markdown(f"Tracking real returns from **{purchase_date}** to **{today}**")
 
 # === FMP price fetcher ===
