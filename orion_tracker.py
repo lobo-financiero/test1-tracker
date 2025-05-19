@@ -268,7 +268,7 @@ spy = price_data.get(benchmark, pd.Series())
 spy_return = ((spy.iloc[-1] - spy.iloc[0]) / spy.iloc[0]) * 100 if not spy.empty else None
 
 # === Prepare Chart ===
-bar_labels = tickers_10 + ["📦 Top 10", "🧰 Top 30", "💯 Top 99", "📈 SPY"]
+bar_labels = tickers_10 + ["📦 Top 10", "🧰 Top 30", "💯 Top 100", "📈 SPY"]
 bar_returns = [returns.get(t, 0) for t in tickers_10] + [
     top10_return, top30_return, top99_return, spy_return
 ]
