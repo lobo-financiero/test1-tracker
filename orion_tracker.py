@@ -311,7 +311,7 @@ def get_portfolio_label(ticker):
     elif ticker in tickers_30:
         return "Top 30"
     else:
-        return "Top 99"
+        return "Top 100"
 
 df_99["Portfolio"] = df_99["Symbol"].apply(get_portfolio_label)
 
