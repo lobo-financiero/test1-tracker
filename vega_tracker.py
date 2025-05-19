@@ -42,7 +42,7 @@ st.title("⭐ Vega Portfolio Monitor")
 st.markdown(f"Tracking real returns from **{purchase_date}** to **{today}**")
 
 # === FMP price fetcher ===
-#@st.cache_data(ttl=86400)
+@st.cache_data(ttl=86400)
 def fetch_fmp_price_history(symbol, from_date, to_date):
     api_key = st.secrets["FMP_API_KEY"]
     url = f"https://financialmodelingprep.com/api/v3/historical-price-full/{symbol}?from={from_date}&to={to_date}&apikey={api_key}"
