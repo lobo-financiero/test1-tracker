@@ -116,7 +116,7 @@ port_df["Portfolio"] = port_df.sum(axis=1)
 # add SPY
 spy_df = stock_data.get("SPY")
 if spy_df is not None and not spy_df.empty:
-    spy_shares = 50 / spy_df["close"].iloc[0]
+    spy_shares = 500 / spy_df["close"].iloc[0]
     port_df["SPY"] = spy_df["close"] * spy_shares
 
 # ensure Date column
