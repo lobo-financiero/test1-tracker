@@ -102,7 +102,7 @@ fig_bar.add_hline(
     y=spy_return,
     line_dash="dash",
     line_color="white",
-    #annotation_text="SPY",
+    annotation_text="",
     annotation_position="top right"
 )
 fig_bar.update_traces(marker_color=colors, textposition="auto")
