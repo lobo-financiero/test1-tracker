@@ -65,7 +65,7 @@ st.markdown(
     "</p>", 
     unsafe_allow_html=True
 )
-st.header(f"Tracking portfolio returns from {start_date} to {end_date}")
+st.subheader(f"Tracking portfolio returns from {start_date} to {end_date}")
 
 st.write("🛠 caption debug")
 
