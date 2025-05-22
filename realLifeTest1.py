@@ -65,9 +65,6 @@ st.markdown(
     "</p>", 
     unsafe_allow_html=True
 )
-st.subheader(f"Tracking portfolio returns from {start_date} to {end_date}")
-
-st.write("🛠 caption debug")
 
 # --- Fetch ---
 with st.spinner("Fetching data…"):
