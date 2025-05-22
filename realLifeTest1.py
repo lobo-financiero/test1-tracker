@@ -65,6 +65,7 @@ st.markdown(
     "</p>", 
     unsafe_allow_html=True
 )
+st.write("🛠 caption debug")
 
 # --- Fetch ---
 with st.spinner("Fetching data…"):
