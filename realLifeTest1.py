@@ -51,7 +51,7 @@ stocks = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'NVDA', 'META', 'JPM', 'V', '
 symbols = stocks + ['SPY']
 end_date = datetime.today().strftime('%Y-%m-%d')
 start_date = "2025-05-19"
-api_key = st.secrets["secrets"]["FMP_API_KEY"]
+FMP_API_KEY = st.secrets["secrets"]["FMP_API_KEY"]
 
 # Fetch data
 with st.spinner("Fetching stock data..."):
