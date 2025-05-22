@@ -58,6 +58,7 @@ def calculate_returns(data, invest=50):
     return rtns, portfolio_value
 
 st.title("Stock Portfolio Returns Analysis")
+
 st.markdown(
     f"<p style='font-size:16px; color:#aaaaaa;'>"
     f"Tracking portfolio returns from {start_date} to {end_date}"
