@@ -101,7 +101,7 @@ spy_return = bar_df.loc[bar_df['Symbol']=='SPY', 'Return'].iloc[0]
 fig_bar.add_hline(
     y=spy_return,
     line_dash="dot",
-    line_width=2,
+    line_width=1,
     line_color="white",
     annotation_text="",
     annotation_position="top right"
