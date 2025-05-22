@@ -91,7 +91,7 @@ fig_bar = px.bar(
     bar_df,
     x="Symbol",
     y="Return",
-    title="Returns on $50 Investment",
+    title="Returns on $50 Investment per stock",
     text=bar_df["Return"].round(2).map(lambda x: f"{x:.2f}%"),
 )
 # get the SPY return value
