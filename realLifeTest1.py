@@ -6,6 +6,13 @@ import requests
 from datetime import datetime
 from streamlit import cache_data
 
+# --- Parameters ---
+stocks    = ["PLTR","HWM","TPR","FTNT","ABBV","BLK","CHTR","FOX","GILD","NVR"]
+symbols   = ["SPY"] + stocks
+start_date = "2025-05-19"
+end_date   = datetime.today().strftime("%Y-%m-%d")
+api_key    = st.secrets["FMP_API_KEY"]
+
 # Streamlit page configuration
 st.set_page_config(page_title="Stock Portfolio Returns", layout="wide")
 
@@ -51,13 +58,7 @@ def calculate_returns(data, invest=50):
     return rtns, portfolio_value
 
 st.title("Stock Portfolio Returns Analysis")
-
-# --- Parameters ---
-stocks    = ["PLTR","HWM","TPR","FTNT","ABBV","BLK","CHTR","FOX","GILD","NVR"]
-symbols   = ["SPY"] + stocks
-start_date = "2025-05-19"
-end_date   = datetime.today().strftime("%Y-%m-%d")
-api_key    = st.secrets["FMP_API_KEY"]
+st.caption(f"Tracking portfolio returns from {start_date} to {end_date}")
 
 # --- Fetch ---
 with st.spinner("Fetching data…"):
