@@ -94,6 +94,17 @@ fig_bar = px.bar(
     title="Returns on $50 Investment",
     text=bar_df["Return"].round(2).map(lambda x: f"{x:.2f}%"),
 )
+# get the SPY return value
+spy_return = bar_df.loc[bar_df['Symbol']=='SPY', 'Return'].iloc[0]
+
+# add a horizontal dashed line at SPY's return
+fig_bar.add_hline(
+    y=spy_return,
+    line_dash="dash",
+    line_color="black",
+    annotation_text="SPY",
+    annotation_position="top right"
+)
 fig_bar.update_traces(marker_color=colors, textposition="auto")
 fig_bar.update_layout(showlegend=False, yaxis_title="Return (%)")
 st.plotly_chart(fig_bar, use_container_width=True)
