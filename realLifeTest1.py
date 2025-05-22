@@ -168,7 +168,7 @@ fig_line.update_layout(
     legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
 )
 
-st.subheader("Portfolio and SPY Value Over Time")
+#st.subheader("Portfolio and SPY Value Over Time")
 st.plotly_chart(fig_line, use_container_width=True)
 
 # --- Summary metrics ---
