@@ -10,7 +10,7 @@ from streamlit import cache_data
 st.set_page_config(page_title="Stock Portfolio Returns", layout="wide")
 
 # Function to fetch stock data from FMP API
-@cache_data(ttl=43200)  # Cache for 12 hours (43200 seconds)
+#@cache_data(ttl=43200)  # Cache for 12 hours (43200 seconds)
 def fetch_stock_data(symbols, api_key, start_date, end_date):
     data = {}
     for symbol in symbols:
