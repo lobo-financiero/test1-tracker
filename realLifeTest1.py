@@ -100,7 +100,8 @@ spy_return = bar_df.loc[bar_df['Symbol']=='SPY', 'Return'].iloc[0]
 # add a horizontal dashed line at SPY's return
 fig_bar.add_hline(
     y=spy_return,
-    line_dash="dash",
+    line_dash="dot",
+    line_width=2,
     line_color="white",
     annotation_text="",
     annotation_position="top right"
