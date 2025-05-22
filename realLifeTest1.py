@@ -54,7 +54,7 @@ st.title("Stock Portfolio Returns Analysis")
 
 # --- Parameters ---
 stocks    = ["PLTR","HWM","TPR","FTNT","ABBV","BLK","CHTR","FOX","GILD","NVR"]
-symbols   = stocks + ["SPY"]
+symbols   = ["SPY"] + stocks
 start_date = "2025-05-19"
 end_date   = datetime.today().strftime("%Y-%m-%d")
 api_key    = st.secrets["FMP_API_KEY"]
