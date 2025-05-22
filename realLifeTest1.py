@@ -58,7 +58,7 @@ def calculate_returns(data, invest=50):
     return rtns, portfolio_value
 
 st.title("Stock Portfolio Returns Analysis")
-st.caption(f"Tracking portfolio returns from {start_date} to {end_date}")
+st.subheader(f"Tracking portfolio returns from {start_date} to {end_date}")
 
 # --- Fetch ---
 with st.spinner("Fetching data…"):
