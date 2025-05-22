@@ -53,7 +53,7 @@ def calculate_returns(data, invest=50):
 st.title("Stock Portfolio Returns Analysis")
 
 # --- Parameters ---
-stocks    = ["GILD","FTNT","PLTR","CHTR","HWM","FOX","BLK","ABBV","TPR","NVR"]
+stocks    = ["PLTR","HWM","TPR","FTNT","ABBV","BLK","CHTR","FOX","GILD","NVR"]
 symbols   = stocks + ["SPY"]
 start_date = "2025-05-19"
 end_date   = datetime.today().strftime("%Y-%m-%d")
