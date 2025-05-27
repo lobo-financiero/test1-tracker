@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 from pandas.tseries.offsets import BDay
 
 # === CONFIGURATION ===
-purchase_date = "2025-05-07"
+purchase_date = "2025-05-15"
 today = (datetime.today() - BDay(1)).strftime("%Y-%m-%d")
 benchmark = "SPY"
 investment = 100
