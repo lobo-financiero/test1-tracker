@@ -14,7 +14,7 @@ end_date   = datetime.today().strftime("%Y-%m-%d")
 api_key    = st.secrets["FMP_API_KEY"]
 
 # Streamlit page configuration
-st.set_page_config(page_title="Stock Portfolio Returns", layout="wide")
+st.set_page_config(page_title="Real Life Stock Portfolio Returns", layout="wide")
 
 # Function to fetch stock data from FMP API
 @cache_data(ttl=43200)  # Cache for 12 hours
@@ -57,7 +57,7 @@ def calculate_returns(data, invest=50):
             portfolio_value += final
     return rtns, portfolio_value
 
-st.title("Stock Portfolio Returns Analysis")
+st.title("Real Life Stock Portfolio Returns")
 
 st.markdown(
     f"<p style='font-size:16px; color:#aaaaaa;'>"
